@@ -42,11 +42,11 @@ public class ChatbotApplication {
 					}
 				}
 				RestTemplate restTemplate = new RestTemplate();
-				String url = "https://graph.facebook.com/v2.6/me/messages?access_token=";
+				String url = "https://graph.facebook.com/v2.6/me/messages?";
 				String access_token = "EAAJZClfP0EdIBAHgmdNM59uYfJYcUZCjqhyR7iD3XW5K7xse8nvSUIqlOI9Ncwr8DDnVRIwuCL87jR7m0d1z7gOEtsyqzjZBxD4n5xIGPrLjnok9YeI35bQtjwxlHLjd0ywRG2duvdwFHyUqzV9ZClD8gI5Q6qIDcpI6dfqiuSIQYkZC9lX2g";
 				UriComponentsBuilder Builder = UriComponentsBuilder.fromUriString(url).queryParam("access_token", access_token );
 				UriComponents components = Builder.build();
-				restTemplate.postForObject(components.toString(),response,String.class);
+				restTemplate.postForObject(components.toString(), response ,String.class);
 			}
 		}
 	}
