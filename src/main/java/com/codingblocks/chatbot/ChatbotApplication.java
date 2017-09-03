@@ -29,16 +29,16 @@ public class ChatbotApplication {
 			for(Content i : item.messaging){
 				Response response = new Response();
 				response.recipient= i.sender;
-				response.res = i.message;
-				if(response.res.text == null){
-					response.res.text = "Thanks for sending an attachment";
+				response.message = i.message;
+				if(response.message.text == null){
+					response.message.text = "Thanks for sending an attachment";
 				}else{
-					if(response.res.text.contains("joke")){
+					if(response.message.text.contains("joke")){
 						Jokes jokes = new Jokes();
 						int random = (int) (Math.random() * jokes.jokes.size());
-						response.res.text = jokes.jokes.get(random);
+						response.message.text = jokes.jokes.get(random);
 					}else{
-						response.res.text = "Please ask me for a joke";
+						response.message.text = "Please ask me for a joke";
 					}
 				}
 				RestTemplate restTemplate = new RestTemplate();

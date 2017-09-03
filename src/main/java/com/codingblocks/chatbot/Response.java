@@ -2,5 +2,5 @@ package com.codingblocks.chatbot;
 
 public class Response {
     public User recipient;
-    public Message res;
+    public Message message;
 }
