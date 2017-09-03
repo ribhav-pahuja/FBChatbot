@@ -4,6 +4,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
+import org.springframework.web.util.UriComponents;
+import org.springframework.web.util.UriComponentsBuilder;
 
 @Controller
 @SpringBootApplication
@@ -22,7 +25,30 @@ public class ChatbotApplication {
 	@PostMapping("/Webhook")
 	@ResponseBody
 	public void Hook(@RequestBody Hook hook){
-		System.out.println(hook.toString());
+		for(Hook.Item item: hook.entry){
+			for(Content i : item.messaging){
+				Response response = new Response();
+				response.recipient= i.sender;
+				response.res = i.message;
+				if(response.res.text == null){
+					response.res.text = "Thanks for sending an attachment";
+				}else{
+					if(response.res.text.contains("joke")){
+						Jokes jokes = new Jokes();
+						int random = (int) (Math.random() * jokes.jokes.size());
+						response.res.text = jokes.jokes.get(random);
+					}else{
+						response.res.text = "Please ask me for a joke";
+					}
+				}
+				RestTemplate restTemplate = new RestTemplate();
+				String url = "https://graph.facebook.com/v2.6/me/messages?access_token=";
+				String access_token = "EAAJZClfP0EdIBAHgmdNM59uYfJYcUZCjqhyR7iD3XW5K7xse8nvSUIqlOI9Ncwr8DDnVRIwuCL87jR7m0d1z7gOEtsyqzjZBxD4n5xIGPrLjnok9YeI35bQtjwxlHLjd0ywRG2duvdwFHyUqzV9ZClD8gI5Q6qIDcpI6dfqiuSIQYkZC9lX2g";
+				UriComponentsBuilder Builder = UriComponentsBuilder.fromUriString(url).queryParam("access_token", access_token );
+				UriComponents components = Builder.build();
+				restTemplate.postForObject(components.toString(),response,String.class);
+			}
+		}
 	}
 
 	public static void main(String[] args) {
