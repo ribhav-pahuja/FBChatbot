@@ -7,7 +7,7 @@ public class Hook {
     public Item[] entry;
     public ObjectMapper objectMapper = new ObjectMapper();
     public static class Item{
-        Content[] messaging ;
+        public Content[] messaging ;
     }
 
     @Override
