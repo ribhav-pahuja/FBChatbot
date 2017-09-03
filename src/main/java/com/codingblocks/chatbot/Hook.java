@@ -13,11 +13,11 @@ public class Hook {
     @Override
     public String toString() {
         try {
-            return objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(this);
+            String str =objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(this);
+            return str;
         } catch (JsonProcessingException e) {
             e.printStackTrace();
-            super.toString();
+            return super.toString();
         }
-        return super.toString();
     }
 }
