@@ -37,8 +37,10 @@ public class ChatbotApplication {
                         Jokes jokes = new Jokes();
                         int random = (int) (Math.random() * jokes.jokes.size());
                         response.message.text = (new Jokes()).jokes.get(random);
-                    } else {
-                        response.message.text = "Please ask me for a joke";
+                    } else if(response.message.text.contains("hi")||response.message.text.contains("hello")||response.message.text.contains("Hi")||response.message.text.contains("Hello")){
+                        response.message.text = "Heya ! How you doing?";
+                    }else {
+                        response.message.text = "Please ask me for a quote";
                     }
                 }
                 RestTemplate restTemplate = new RestTemplate();
