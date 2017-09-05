@@ -5,15 +5,16 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class Hook {
     public Item[] entry;
-    public ObjectMapper objectMapper = new ObjectMapper();
-    public static class Item{
-        public Content[] messaging ;
+    ObjectMapper objectMapper = new ObjectMapper();
+
+    public static class Item {
+        public Content[] messaging;
     }
 
     @Override
     public String toString() {
         try {
-            String str =objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(this);
+            String str = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(this);
             return str;
         } catch (JsonProcessingException e) {
             e.printStackTrace();
