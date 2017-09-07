@@ -38,7 +38,7 @@ public class ChatbotApplication {
                         int random = (int) (Math.random() * jokes.jokes.size());
                         response.message.text = (new Jokes()).jokes.get(random);
                     } else if(response.message.text.toLowerCase().equals("hi")||response.message.text.toLowerCase().equals("hello")){
-                        response.message.text = "Heya ! How you doing? /nPlease ask me for a quote";
+                        response.message.text = "Heya ! How you doing? \nPlease ask me for a quote";
 
                     }else {
                         response.message.text = "Please ask me for a quote";
