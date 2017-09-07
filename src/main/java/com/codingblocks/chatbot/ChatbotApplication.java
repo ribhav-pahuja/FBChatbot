@@ -33,7 +33,7 @@ public class ChatbotApplication {
                 if (response.message.text == null) {
                     response.message.text = "Thanks for sending an attachment";
                 } else {
-                    if (response.message.text.toLowerCase().equals("quotes")) {
+                    if (response.message.text.toLowerCase().contains("quote")) {
                         Jokes jokes = new Jokes();
                         int random = (int) (Math.random() * jokes.jokes.size());
                         response.message.text = (new Jokes()).jokes.get(random);
